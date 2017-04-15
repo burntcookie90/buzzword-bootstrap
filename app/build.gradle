@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "io.dwak.techtest"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile deps.appCompat
+    compile deps.constraintLayout
+
+    kapt deps.autoValue
+    kapt deps.autoValueParcel
+    compile deps.autoValueAnnotations
+
+    compile deps.butterknife
+    kapt deps.butterknifeCompiler
+
+    compile deps.conductor
+    compile deps.conductorRxLifecycle
+
+    compile deps.dagger
+    kapt deps.daggerCompiler
+
+    compile deps.freight
+    compile deps.freightAnnotations
+    kapt deps.freightProcessor
+
+    compile deps.kotlin
+
+    compile deps.moshi
+
+    compile deps.retrofit
+    compile deps.retrofitMoshi
+    compile deps.retrofitRxJava
+
+    compile deps.rxJava
+    compile deps.rxAndroid2
+    compile deps.rxJavaInterop
+
+    compile deps.store
+    compile deps.storeCache
+    compile deps.storeMoshiMiddleware
+    compile deps.storeFileSystem
+
+    compile deps.timber
+    testCompile 'junit:junit:4.12'
+}
