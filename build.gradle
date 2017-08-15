@@ -1,12 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.1.1'
+    ext.kotlin_version = '1.1.3-2'
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -18,6 +18,7 @@ allprojects {
     repositories {
         jcenter()
         maven {url "https://oss.sonatype.org/content/repositories/snapshots/"}
+        google()
     }
 }
 
@@ -25,52 +26,5 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def autoValueVersion = "1.3"
-def butterknifeVersion = "8.5.1"
-def conductorVersion = "2.1.2"
-def daggerVersion = "2.10"
-def freightVersion = "0.7-SNAPSHOT"
-def retrofitVersion = "2.2.0"
-def storeVersion = "2.0.3"
-def supportVersion = "25.3.1"
-ext.deps = [
-    appCompat           : "com.android.support:appcompat-v7:$supportVersion",
+apply from: 'dependencies.gradle'
 
-    autoValue           : "com.google.auto.value:auto-value:$autoValueVersion",
-    autoValueAnnotations: "com.jakewharton.auto.value:auto-value-annotations:$autoValueVersion",
-    autoValueParcel     : "com.ryanharter.auto.value:auto-value-parcel:0.2.5",
-
-    butterknife         : "com.jakewharton:butterknife:$butterknifeVersion",
-    butterknifeCompiler : "com.jakewharton:butterknife-compiler:$butterknifeVersion",
-
-    conductor           : "com.bluelinelabs:conductor:$conductorVersion",
-    conductorRxLifecycle: "com.bluelinelabs:conductor-rxlifecycle2:$conductorVersion",
-
-    constraintLayout    : "com.android.support.constraint:constraint-layout:1.0.2",
-
-    dagger              : "com.google.dagger:dagger:$daggerVersion",
-    daggerCompiler      : "com.google.dagger:dagger-compiler:$daggerVersion",
-
-    freight             : "io.dwak:freight:$freightVersion",
-    freightAnnotations  : "io.dwak:freight-annotations:$freightVersion",
-    freightProcessor    : "io.dwak:freight-processor:$freightVersion",
-
-    kotlin              : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-
-    moshi               : "com.squareup.moshi:moshi:1.4.0",
-
-    retrofit            : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-    retrofitMoshi       : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
-    retrofitRxJava      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
-
-    rxJava              : "io.reactivex.rxjava2:rxjava:2.0.8",
-    rxAndroid2          : "io.reactivex.rxjava2:rxandroid:2.0.1",
-    rxJavaInterop       : "com.github.akarnokd:rxjava2-interop:0.9.5",
-
-    store               : "com.nytimes.android:store:$storeVersion",
-    storeCache          : "com.nytimes.android:cache:$storeVersion",
-    storeMoshiMiddleware: "com.nytimes.android:middleware-moshi:$storeVersion",
-    storeFileSystem     : "com.nytimes.android:filesystem:$storeVersion",
-
-    timber              : "com.jakewharton.timber:timber:4.3.1"
-]

@@ -3,15 +3,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "io.dwak.techtest"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -22,6 +28,14 @@ android {
 }
 
 dependencies {
+    compile deps.archLifecycle
+    compile deps.archLifecycleExtensions
+    kapt deps.archLifecycleCompiler
+    compile deps.archRoom
+    kapt deps.archRoomCompiler
+    testCompile deps.archRoomTesting
+    compile deps.archRoomRxJava2
+
     compile deps.appCompat
     compile deps.constraintLayout
 
@@ -53,11 +67,6 @@ dependencies {
     compile deps.rxJava
     compile deps.rxAndroid2
     compile deps.rxJavaInterop
-
-    compile deps.store
-    compile deps.storeCache
-    compile deps.storeMoshiMiddleware
-    compile deps.storeFileSystem
 
     compile deps.timber
     testCompile 'junit:junit:4.12'
